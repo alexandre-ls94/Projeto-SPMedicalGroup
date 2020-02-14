@@ -31,3 +31,18 @@ SELECT COUNT(*) As TotalUsuarios FROM Usuario;
 
 SELECT CONVERT (VARCHAR(10),DataNascimento,110) AS [MM,DD,YYYY]
 FROM Paciente;
+
+CREATE FUNCTION MedicoPorEspecialidade (@IdEspecialidade INT)
+RETURNS REAL
+AS
+BEGIN
+DECLARE @MedicoPorEspecialidade REAL
+SELECT @MedicoPorEspecialidade = IdMedico FROM Medico WHERE IdEspecialidade = @IdEspecialidade
+RETURN @MedicoPorEspecialidade
+END;
+
+SELECT dbo.MedicoPorEspecialidade(17);
+
+--CREATE PROC Idade (@IdPaciente INT)
+--SELECT DataNascimento FROM Paciente WHERE Paciente.IdPaciente = @IdPaciente
+--GETDATE() - DataNascimento
